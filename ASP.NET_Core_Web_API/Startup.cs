@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using NLog;
+using System.IO;
 
 namespace ASP.NET_Core_Web_API
 {
@@ -12,6 +14,7 @@ namespace ASP.NET_Core_Web_API
     {
         public Startup(IConfiguration configuration)
         {
+            LogManager.LoadConfiguration(string.Concat(Directory.GetCurrentDirectory(), "/nlog.config"));
             Configuration = configuration;
         }
 
@@ -22,7 +25,7 @@ namespace ASP.NET_Core_Web_API
         {
             services.ConfigureCors();
             services.ConfigureIISIntegration();
-
+            services.ConfigureLoggerService();
             services.AddControllers();
         }
 
