@@ -1,4 +1,5 @@
 using ASP.NET_Core_Web_API.Extensions;
+using Entities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpOverrides;
@@ -26,6 +27,7 @@ namespace ASP.NET_Core_Web_API
             services.ConfigureCors();
             services.ConfigureIISIntegration();
             services.ConfigureLoggerService();
+            services.ConfigureSqlContext(Configuration);
             services.AddControllers();
         }
 

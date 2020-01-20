@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Entities.Models
 {
-    class CompanyExample
+    class Company
     {
         [Column("CompanyId")]
         public Guid Id { get; set; }
@@ -17,6 +17,6 @@ namespace Entities.Models
         [MaxLength(60, ErrorMessage = "Maximum lenght for the Address is 60 characters.")]
         public string Address { get; set; }
         public string Country { get; set; }
-        public ICollection<EmployeeExample> Employees { get; set; }
+        public ICollection<Employee> Employees { get; set; }
     }
 }
