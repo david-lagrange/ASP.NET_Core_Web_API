@@ -1,4 +1,5 @@
 using ASP.NET_Core_Web_API.Extensions;
+using AutoMapper;
 using Entities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -28,6 +29,8 @@ namespace ASP.NET_Core_Web_API
             services.ConfigureIISIntegration();
             services.ConfigureLoggerService();
             services.ConfigureSqlContext(Configuration);
+            services.ConfigureRepositoryManager();
+            services.AddAutoMapper(typeof(Startup));
             services.AddControllers();
         }
 
