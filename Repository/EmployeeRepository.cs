@@ -3,7 +3,7 @@ using Entities;
 using Entities.Models;
 using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 
 namespace Repository
 {
@@ -12,7 +12,8 @@ namespace Repository
         public EmployeeRepository(RepositoryContext context)
             :base(context)
         {
-
         }
+        public IEnumerable<Employee> GetEmployees(Guid companyId, bool trackChanges) =>
+            FindByCondition(e => e.CompanyId.Equals(companyId), trackChanges).OrderBy(e => e.Name);
     }
 }
