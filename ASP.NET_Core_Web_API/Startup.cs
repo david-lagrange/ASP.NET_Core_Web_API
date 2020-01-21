@@ -1,5 +1,6 @@
 using ASP.NET_Core_Web_API.Extensions;
 using AutoMapper;
+using Contracts;
 using Entities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -35,7 +36,7 @@ namespace ASP.NET_Core_Web_API
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerManager logger)
         {
             if (env.IsDevelopment())
             {
@@ -44,6 +45,8 @@ namespace ASP.NET_Core_Web_API
             {
                 app.UseHsts();
             }
+
+            app.ConfigureExceptionHandler(logger);
 
             app.UseHttpsRedirection();
 
