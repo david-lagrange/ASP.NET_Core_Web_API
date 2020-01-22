@@ -57,5 +57,13 @@ namespace ASP.NET_Core_Web_API.Controllers
             var companyToReturn = _mapper.Map<CompanyDto>(companyEntity);
             return CreatedAtRoute("CompanyById", new { id = companyToReturn.Id }, companyToReturn);
         }
+        [HttpPost("collection/({ids})", Name = "CompanyCollection")]
+        public IActionResult CreateCompanies(IEnumerable<Guid> ids)
+        {
+            if(ids == null)
+            {
+                _logger.LogInfo("Parameter ids is null");
+            }
+        }
     }
 }
