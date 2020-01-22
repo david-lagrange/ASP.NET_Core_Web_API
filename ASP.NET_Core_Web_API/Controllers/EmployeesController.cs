@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using AutoMapper;
 using Contracts;
 using Entities.DataTransferObjects;
+using Entities.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ASP.NET_Core_Web_API.Controllers
@@ -33,7 +34,7 @@ namespace ASP.NET_Core_Web_API.Controllers
             var employeesDto = _mapper.Map<IEnumerable<EmployeeDto>>(employeesFromDb);
             return Ok(employeesDto);
         }
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "GetEmployeeForCompany")]
         public IActionResult GetEmployeeForCompany(Guid companyId, Guid id)
         {
             var company = _repository.Company.GetCompany(companyId, trackChanges: false);
@@ -50,6 +51,26 @@ namespace ASP.NET_Core_Web_API.Controllers
             }
             var employeeDto = _mapper.Map<EmployeeDto>(employeeDb);
             return Ok(employeeDto);
+        }
+        [HttpPost]
+        public IActionResult CreateEmployeeForCompany(Guid companyId, [FromBody] EmployeeForCreationDto employee)
+        {
+            if(employee == null)
+            {
+                _logger.LogError("EmployeeForCreationDto object sent from client is null.");
+                return BadRequest("EmployeeForCreationDto object is null");
+            }
+            var company = _repository.Company.GetCompany(companyId, false);
+            if(company == null)
+            {
+                _logger.LogInfo($"Company with id: {companyId} doesn't exist in the database.");
+                return NotFound();
+            }
+            var employeeEntity = _mapper.Map<Employee>(employee);
+            _repository.Employee.CreateEmployeeForCompany(companyId, employeeEntity);
+            _repository.Save();
+            var employeeToReturn = _mapper.Map<EmployeeDto>(employeeEntity);
+            return CreatedAtRoute("GetEmployeeForCompany", new { companyId, id = employeeEntity.Id }, employeeToReturn);
         }
     }
 }

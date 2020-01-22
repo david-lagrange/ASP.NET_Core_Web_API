@@ -1,0 +1,107 @@
+{
+	"variables": [],
+	"info": {
+		"name": "ASP.NET_Core_Web_API",
+		"_postman_id": "e23dc9a0-dd70-ea45-54b3-4bd3f0be8fa0",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetCompanies",
+			"request": {
+				"url": "https://localhost:5001/api/companies",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "text/csv",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GetCompany",
+			"request": {
+				"url": "https://localhost:5001/api/companies/c63792f1-75fa-46dd-5af0-08d79f59ed25",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GetEmployeesFromCompany",
+			"request": {
+				"url": "https://localhost:5001/api/companies/c9d4c053-49b6-410c-bc78-2d54a9991870/employees",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GetEmployeeFromCompany",
+			"request": {
+				"url": "https://localhost:5001/api/companies/c63792f1-75fa-46dd-5af0-08d79f59ed25/employees/3befbead-b9d6-4b06-5403-08d79f5f8574",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "text/xml",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "CreatCompany",
+			"request": {
+				"url": "https://localhost:5001/api/companies",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"Marketing Solution Ltd\",\n\t\"address\":\"242 Sunny Avenue, K 334\",\n\t\"country\":\"USA\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "CreateEmployeeForCompany",
+			"request": {
+				"url": "https://localhost:5001/api/companies/c63792f1-75fa-46dd-5af0-08d79f59ed25/employees",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"Martin Geil\",\n\t\"age\":29,\n\t\"position\":\"Marketing Expert\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
