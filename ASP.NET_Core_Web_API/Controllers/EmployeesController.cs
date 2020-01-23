@@ -72,5 +72,24 @@ namespace ASP.NET_Core_Web_API.Controllers
             var employeeToReturn = _mapper.Map<EmployeeDto>(employeeEntity);
             return CreatedAtRoute("GetEmployeeForCompany", new { companyId, id = employeeEntity.Id }, employeeToReturn);
         }
+        [HttpDelete("{id}")]
+        public IActionResult DeleteEmployeeForCompany(Guid companyId, Guid id)
+        {
+            var company = _repository.Company.GetCompany(companyId, false);
+            if(company == null)
+            {
+                _logger.LogInfo($"Company with id: {companyId} doesn't exist in the database.");
+                return NotFound();
+            }
+            var employeeDb = _repository.Employee.GetEmployee(companyId, id, false);
+            if(employeeDb == null)
+            {
+                _logger.LogInfo($"Employee with id: {id} doesn't exist in the  database.");
+                return NotFound();
+            }
+            _repository.Employee.DeleteEmployee(employeeDb);
+            _repository.Save();
+            return NoContent();
+        }
     }
 }
