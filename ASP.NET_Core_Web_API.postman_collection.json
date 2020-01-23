@@ -38,7 +38,7 @@
 		{
 			"name": "GetEmployeesFromCompany",
 			"request": {
-				"url": "https://localhost:5001/api/companies/c9d4c053-49b6-410c-bc78-2d54a9991870/employees",
+				"url": "https://localhost:5001/api/companies/a69c728d-e9e0-47f0-9352-08d79f64971f/employees",
 				"method": "GET",
 				"header": [],
 				"body": {},
@@ -77,7 +77,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"name\":\"Marketing Solution Ltd\",\n\t\"address\":\"242 Sunny Avenue, K 334\",\n\t\"country\":\"USA\"\n}"
+					"raw": "{\n\t\"name\":\"Consulting Solutions Ltd\",\n\t\"address\":\"242 Sunny Avenue, K 335\",\n\t\"country\":\"USA\",\n\t\"employees\": [\n\t\t{\n\t\t\t\"name\": \"Joan Dane\",\n\t\t\t\"age\": 29,\n\t\t\t\"position\": \"Manager\"\n\t\t},\n\t\t{\n\t\t\t\"name\": \"Martin Geil\",\n\t\t\t\"age\": 29,\n\t\t\t\"position\": \"Administrator\"\n\t\t}\n\t]\n}"
 				},
 				"description": ""
 			},
@@ -99,6 +99,43 @@
 					"mode": "raw",
 					"raw": "{\n\t\"name\":\"Martin Geil\",\n\t\"age\":29,\n\t\"position\":\"Marketing Expert\"\n}"
 				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "CreateCompanies",
+			"request": {
+				"url": "https://localhost:5001/api/companies/collection",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n\t{\n\t\t\"name\":\"Sales all over the world Ltd\",\n\t\t\"address\":\"355 Open Street, B 784\",\n\t\t\"country\":\"USA\"\n\t},\n\t{\n\t\t\"name\":\"Branding Ltd\",\n\t\t\"address\":\"255 Main Street, K 334\",\n\t\t\"country\":\"USA\"\n\t}\n]"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GetCompaniesById",
+			"request": {
+				"url": "https://localhost:5001/api/companies/collection/(c654da91-cac0-4901-9aff-08d7a01aea73,10fc47b6-d522-4895-9b00-08d7a01aea73)",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "text/xml",
+						"description": ""
+					}
+				],
+				"body": {},
 				"description": ""
 			},
 			"response": []
