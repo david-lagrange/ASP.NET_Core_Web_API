@@ -51,13 +51,7 @@
 			"request": {
 				"url": "https://localhost:5001/api/companies/c63792f1-75fa-46dd-5af0-08d79f59ed25/employees/3befbead-b9d6-4b06-5403-08d79f5f8574",
 				"method": "GET",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "text/xml",
-						"description": ""
-					}
-				],
+				"header": [],
 				"body": {},
 				"description": ""
 			},
@@ -136,6 +130,48 @@
 					}
 				],
 				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteEmployee",
+			"request": {
+				"url": "https://localhost:5001/api/companies/a69c728d-e9e0-47f0-9352-08d79f64971f/employees/1d512bb0-4184-454b-05b8-08d79f649736",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteCompany",
+			"request": {
+				"url": "https://localhost:5001/api/companies/4db8f064-57b0-46f8-dcdb-08d7a01ab3c4",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateEmployee",
+			"request": {
+				"url": "https://localhost:5001/api/companies/a69c728d-e9e0-47f0-9352-08d79f64971f/employees/bacdf3ea-9277-49c6-05b9-08d79f649736",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Martin Geil\",\n    \"age\": 32,\n    \"position\": \"Administrator\"\n}"
+				},
 				"description": ""
 			},
 			"response": []
