@@ -61,6 +61,11 @@ namespace ASP.NET_Core_Web_API.Controllers
                 _logger.LogError("EmployeeForCreationDto object sent from client is null.");
                 return BadRequest("EmployeeForCreationDto object is null");
             }
+            if (!ModelState.IsValid)
+            {
+                _logger.LogError("Invalid model state for the EmployeeForCreationDton object");
+                return UnprocessableEntity(ModelState);
+            }
             var company = _repository.Company.GetCompany(companyId, false);
             if(company == null)
             {
