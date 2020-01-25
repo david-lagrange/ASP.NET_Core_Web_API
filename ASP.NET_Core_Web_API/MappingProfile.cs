@@ -14,6 +14,7 @@ namespace ASP.NET_Core_Web_API
             CreateMap<CompanyForCreationDto, Company>();
             CreateMap<EmployeeForCreationDto, Employee>();
             CreateMap<EmployeeForUpdateDto, Employee>();
+            CreateMap<CompanyForUpdateDto, Company>();
         }
     }
 }
