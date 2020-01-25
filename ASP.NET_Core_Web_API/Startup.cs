@@ -36,7 +36,9 @@ namespace ASP.NET_Core_Web_API
             {
                 config.RespectBrowserAcceptHeader = true;
                 config.ReturnHttpNotAcceptable = true;
-            }).AddXmlDataContractSerializerFormatters()
+                config.OutputFormatters.Add(new CsvOutputFormatter());
+            }).AddNewtonsoftJson()
+              .AddXmlDataContractSerializerFormatters()
               .AddCustomCSVFormatter();
         }
 
