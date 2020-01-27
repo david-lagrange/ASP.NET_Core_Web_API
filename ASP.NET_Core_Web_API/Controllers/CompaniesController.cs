@@ -121,6 +121,11 @@ namespace ASP.NET_Core_Web_API.Controllers
                 _logger.LogInfo("CompanyForUpdateDto object sent from client is null.");
                 return BadRequest("CompanyForUpdateDto object is null.");
             }
+            if (!ModelState.IsValid)
+            {
+                _logger.LogError("Invalid model state for CompanyForUpdateDto object.");
+                return UnprocessableEntity(ModelState);
+            }
             var companyFromDb = _repository.Company.GetCompany(id, true);
             if(companyFromDb == null)
             {

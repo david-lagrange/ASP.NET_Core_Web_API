@@ -63,7 +63,7 @@ namespace ASP.NET_Core_Web_API.Controllers
             }
             if (!ModelState.IsValid)
             {
-                _logger.LogError("Invalid model state for the EmployeeForCreationDton object");
+                _logger.LogError("Invalid model state for the EmployeeForCreationDto object");
                 return UnprocessableEntity(ModelState);
             }
             var company = _repository.Company.GetCompany(companyId, false);
@@ -104,6 +104,11 @@ namespace ASP.NET_Core_Web_API.Controllers
             {
                 _logger.LogInfo("EmployeeForUpdateDto object sent from client is null.");
                 return BadRequest("EmployeeForUpdateDto object is null.");
+            }
+            if (!ModelState.IsValid)
+            {
+                _logger.LogError("Invalid model state for the EmployeeForUpdateDto object.");
+                return UnprocessableEntity(ModelState);
             }
             var company = _repository.Company.GetCompany(companyId, trackChanges: false);
             if(company == null)
