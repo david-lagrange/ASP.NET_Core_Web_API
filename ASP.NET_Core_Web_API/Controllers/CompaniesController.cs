@@ -6,6 +6,7 @@ using AutoMapper;
 using Contracts;
 using Entities.DataTransferObjects;
 using Entities.Models;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ASP.NET_Core_Web_API.Controllers
@@ -51,7 +52,12 @@ namespace ASP.NET_Core_Web_API.Controllers
             if(company == null)
             {
                 _logger.LogInfo("CompanyForCreationDto object sent from client is null.");
-                return BadRequest();
+                return BadRequest("ComanyForCreationDto object is null.");
+            }
+            if (!ModelState.IsValid)
+            {
+                _logger.LogError("Invalid model state for the CompanyCreationDto object.");
+                return UnprocessableEntity(ModelState);
             }
             var companyEntity = _mapper.Map<Company>(company);
             _repository.Company.CreateCompany(companyEntity);
@@ -122,6 +128,26 @@ namespace ASP.NET_Core_Web_API.Controllers
                 return NotFound();
             }
             _mapper.Map(company, companyFromDb);
+            _repository.Save();
+            return NoContent();
+        }
+        [HttpPatch("{id}")]
+        public IActionResult PatchCompany(Guid id, [FromBody] JsonPatchDocument<CompanyForUpdateDto> patchDoc)
+        {
+            if(patchDoc == null)
+            {
+                _logger.LogInfo("patchDoc object sent from client is null.");
+                return BadRequest("patchDoc object is null.");
+            }
+            var companyEntity = _repository.Company.GetCompany(id, true);
+            if(companyEntity == null)
+            {
+                _logger.LogInfo($"Company with id: {id} doesn't exist in the database.");
+                return NotFound();
+            }
+            var companyToPatch = _mapper.Map<CompanyForUpdateDto>(companyEntity);
+            patchDoc.ApplyTo(companyToPatch);
+            _mapper.Map(companyToPatch, companyEntity);
             _repository.Save();
             return NoContent();
         }
