@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using ASP.NET_Core_Web_API.ActionFilters;
 using AutoMapper;
 using Contracts;
 using Entities.DataTransferObjects;
@@ -55,18 +56,9 @@ namespace ASP.NET_Core_Web_API.Controllers
             return Ok(employeeDto);
         }
         [HttpPost]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> CreateEmployeeForCompany(Guid companyId, [FromBody] EmployeeForCreationDto employee)
         {
-            if(employee == null)
-            {
-                _logger.LogError("EmployeeForCreationDto object sent from client is null.");
-                return BadRequest("EmployeeForCreationDto object is null");
-            }
-            if (!ModelState.IsValid)
-            {
-                _logger.LogError("Invalid model state for the EmployeeForCreationDto object");
-                return UnprocessableEntity(ModelState);
-            }
             var company = await _repository.Company.GetCompanyAsync(companyId, false);
             if(company == null)
             {
@@ -99,18 +91,9 @@ namespace ASP.NET_Core_Web_API.Controllers
             return NoContent();
         }
         [HttpPut("{id}")]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> UpdateEmployeeForCompany(Guid companyId, Guid id, [FromBody] EmployeeForUpdateDto employee)
         {
-            if(employee == null)
-            {
-                _logger.LogInfo("EmployeeForUpdateDto object sent from client is null.");
-                return BadRequest("EmployeeForUpdateDto object is null.");
-            }
-            if (!ModelState.IsValid)
-            {
-                _logger.LogError("Invalid model state for the EmployeeForUpdateDto object.");
-                return UnprocessableEntity(ModelState);
-            }
             var company = await _repository.Company.GetCompanyAsync(companyId, trackChanges: false);
             if(company == null)
             {

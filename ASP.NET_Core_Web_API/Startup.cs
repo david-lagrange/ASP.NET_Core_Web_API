@@ -1,3 +1,4 @@
+using ASP.NET_Core_Web_API.ActionFilters;
 using ASP.NET_Core_Web_API.Extensions;
 using AutoMapper;
 using Contracts;
@@ -45,6 +46,7 @@ namespace ASP.NET_Core_Web_API
             {
                 options.SuppressModelStateInvalidFilter = true;
             });
+            services.AddScoped<ValidationFilterAttribute>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

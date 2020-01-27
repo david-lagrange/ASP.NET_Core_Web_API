@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ASP.NET_Core_Web_API.ActionFilters;
 using ASP.NET_Core_Web_API.ModelBinders;
 using AutoMapper;
 using Contracts;
@@ -48,18 +49,9 @@ namespace ASP.NET_Core_Web_API.Controllers
             }
         }
         [HttpPost]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> CreateCompany([FromBody]CompanyForCreationDto company)
         {
-            if(company == null)
-            {
-                _logger.LogInfo("CompanyForCreationDto object sent from client is null.");
-                return BadRequest("ComanyForCreationDto object is null.");
-            }
-            if (!ModelState.IsValid)
-            {
-                _logger.LogError("Invalid model state for the CompanyCreationDto object.");
-                return UnprocessableEntity(ModelState);
-            }
             var companyEntity = _mapper.Map<Company>(company);
             _repository.Company.CreateCompany(companyEntity);
             await _repository.SaveAsync();
@@ -115,18 +107,9 @@ namespace ASP.NET_Core_Web_API.Controllers
             return NoContent();
         }
         [HttpPut("{id}")]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> UpdateCompany(Guid id, CompanyForUpdateDto company)
         {
-            if(company == null)
-            {
-                _logger.LogInfo("CompanyForUpdateDto object sent from client is null.");
-                return BadRequest("CompanyForUpdateDto object is null.");
-            }
-            if (!ModelState.IsValid)
-            {
-                _logger.LogError("Invalid model state for CompanyForUpdateDto object.");
-                return UnprocessableEntity(ModelState);
-            }
             var companyFromDb = await _repository.Company.GetCompanyAsync(id, true);
             if(companyFromDb == null)
             {
