@@ -1,370 +1,240 @@
 {
+	"variables": [],
 	"info": {
-		"_postman_id": "c2e6478a-0ab3-4aae-adc5-55d75febc3c0",
 		"name": "ASP.NET_Core_Web_API",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"_postman_id": "e23dc9a0-dd70-ea45-54b3-4bd3f0be8fa0",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
 		{
 			"name": "GetCompanies",
 			"request": {
+				"url": "https://localhost:5001/api/companies",
 				"method": "GET",
 				"header": [
 					{
 						"key": "Accept",
-						"value": "text/csv"
+						"value": "text/csv",
+						"description": ""
 					}
 				],
-				"url": {
-					"raw": "https://localhost:5001/api/companies",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "5001",
-					"path": [
-						"api",
-						"companies"
-					]
-				}
+				"body": {},
+				"description": ""
 			},
 			"response": []
 		},
 		{
 			"name": "GetCompany",
 			"request": {
+				"url": "https://localhost:5001/api/companies/c63792f1-75fa-46dd-5af0-08d79f59ed25",
 				"method": "GET",
 				"header": [],
-				"url": {
-					"raw": "https://localhost:5001/api/companies/e646e583-e18a-478e-5ea8-08d7a1b2a87d",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "5001",
-					"path": [
-						"api",
-						"companies",
-						"e646e583-e18a-478e-5ea8-08d7a1b2a87d"
-					]
-				}
+				"body": {},
+				"description": ""
 			},
 			"response": []
 		},
 		{
 			"name": "GetEmployeesFromCompany",
 			"request": {
+				"url": "https://localhost:5001/api/companies/a69c728d-e9e0-47f0-9352-08d79f64971f/employees",
 				"method": "GET",
 				"header": [],
-				"url": {
-					"raw": "https://localhost:5001/api/companies/e646e583-e18a-478e-5ea8-08d7a1b2a87d/employees",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "5001",
-					"path": [
-						"api",
-						"companies",
-						"e646e583-e18a-478e-5ea8-08d7a1b2a87d",
-						"employees"
-					]
-				}
+				"body": {},
+				"description": ""
 			},
 			"response": []
 		},
 		{
 			"name": "GetEmployeeFromCompany",
 			"request": {
+				"url": "https://localhost:5001/api/companies/c63792f1-75fa-46dd-5af0-08d79f59ed25/employees/3befbead-b9d6-4b06-5403-08d79f5f8574",
 				"method": "GET",
 				"header": [],
-				"url": {
-					"raw": "https://localhost:5001/api/companies/c63792f1-75fa-46dd-5af0-08d79f59ed25/employees/3befbead-b9d6-4b06-5403-08d79f5f8574",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "5001",
-					"path": [
-						"api",
-						"companies",
-						"c63792f1-75fa-46dd-5af0-08d79f59ed25",
-						"employees",
-						"3befbead-b9d6-4b06-5403-08d79f5f8574"
-					]
-				}
+				"body": {},
+				"description": ""
 			},
 			"response": []
 		},
 		{
-			"name": "CreatCompany",
+			"name": "CreateCompany",
 			"request": {
+				"url": "https://localhost:5001/api/companies",
 				"method": "POST",
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "application/json"
+						"value": "application/json",
+						"description": ""
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"name\":\"Lagrange Consultign Ltd\",\n\t\"address\":\"242 Sunny Avenue, K 335\",\n\t\"country\":\"USA\",\n\t\"employees\": [\n\t\t{\n\t\t\t\"name\": \"David Lagrange\",\n\t\t\t\"age\": 25,\n\t\t\t\"position\": \"Lead\"\n\t\t},\n\t\t{\n\t\t\t\"name\": \"Dean Lagrange\",\n\t\t\t\"age\": 60,\n\t\t\t\"position\": \"Administrator\"\n\t\t}\n\t]\n}"
+					"raw": "{\n\t\"name\":\"devCodeCamp\",\n\t\"address\":\"313 N Plankinton, Milwaukee WI\",\n\t\"country\":\"USA\"\n}"
 				},
-				"url": {
-					"raw": "https://localhost:5001/api/companies",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "5001",
-					"path": [
-						"api",
-						"companies"
-					]
-				}
+				"description": ""
 			},
 			"response": []
 		},
 		{
 			"name": "CreateEmployeeForCompany",
 			"request": {
+				"url": "https://localhost:5001/api/companies/60de9cef-aa9e-47c9-e17b-08d7a3489248/employees",
 				"method": "POST",
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "application/json"
+						"value": "application/json",
+						"description": ""
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"name\":\"Martin Geil\",\n\t\"age\":29,\n\t\"position\":\"Marketing Expert\"\n}"
+					"raw": "{\n\t\"name\":\"David Lagrange\",\n\t\"age\":25,\n\t\"position\":\"Instructor\"\n}"
 				},
-				"url": {
-					"raw": "https://localhost:5001/api/companies/c63792f1-75fa-46dd-5af0-08d79f59ed25/employees",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "5001",
-					"path": [
-						"api",
-						"companies",
-						"c63792f1-75fa-46dd-5af0-08d79f59ed25",
-						"employees"
-					]
-				}
+				"description": ""
 			},
 			"response": []
 		},
 		{
 			"name": "CreateCompanies",
 			"request": {
+				"url": "https://localhost:5001/api/companies/collection",
 				"method": "POST",
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "application/json"
+						"value": "application/json",
+						"description": ""
 					}
 				],
 				"body": {
 					"mode": "raw",
 					"raw": "[\n\t{\n\t\t\"name\":\"Sales all over the world Ltd\",\n\t\t\"address\":\"355 Open Street, B 784\",\n\t\t\"country\":\"USA\"\n\t},\n\t{\n\t\t\"name\":\"Branding Ltd\",\n\t\t\"address\":\"255 Main Street, K 334\",\n\t\t\"country\":\"USA\"\n\t}\n]"
 				},
-				"url": {
-					"raw": "https://localhost:5001/api/companies/collection",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "5001",
-					"path": [
-						"api",
-						"companies",
-						"collection"
-					]
-				}
+				"description": ""
 			},
 			"response": []
 		},
 		{
 			"name": "GetCompaniesById",
 			"request": {
+				"url": "https://localhost:5001/api/companies/collection/(c654da91-cac0-4901-9aff-08d7a01aea73,10fc47b6-d522-4895-9b00-08d7a01aea73)",
 				"method": "GET",
 				"header": [
 					{
 						"key": "Accept",
-						"value": "text/xml"
+						"value": "text/xml",
+						"description": ""
 					}
 				],
-				"url": {
-					"raw": "https://localhost:5001/api/companies/collection/(c654da91-cac0-4901-9aff-08d7a01aea73,10fc47b6-d522-4895-9b00-08d7a01aea73)",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "5001",
-					"path": [
-						"api",
-						"companies",
-						"collection",
-						"(c654da91-cac0-4901-9aff-08d7a01aea73,10fc47b6-d522-4895-9b00-08d7a01aea73)"
-					]
-				}
+				"body": {},
+				"description": ""
 			},
 			"response": []
 		},
 		{
 			"name": "DeleteEmployee",
 			"request": {
+				"url": "https://localhost:5001/api/companies/a69c728d-e9e0-47f0-9352-08d79f64971f/employees/1d512bb0-4184-454b-05b8-08d79f649736",
 				"method": "DELETE",
 				"header": [],
-				"url": {
-					"raw": "https://localhost:5001/api/companies/a69c728d-e9e0-47f0-9352-08d79f64971f/employees/1d512bb0-4184-454b-05b8-08d79f649736",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "5001",
-					"path": [
-						"api",
-						"companies",
-						"a69c728d-e9e0-47f0-9352-08d79f64971f",
-						"employees",
-						"1d512bb0-4184-454b-05b8-08d79f649736"
-					]
-				}
+				"body": {},
+				"description": ""
 			},
 			"response": []
 		},
 		{
 			"name": "DeleteCompany",
 			"request": {
+				"url": "https://localhost:5001/api/companies/4db8f064-57b0-46f8-dcdb-08d7a01ab3c4",
 				"method": "DELETE",
 				"header": [],
-				"url": {
-					"raw": "https://localhost:5001/api/companies/4db8f064-57b0-46f8-dcdb-08d7a01ab3c4",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "5001",
-					"path": [
-						"api",
-						"companies",
-						"4db8f064-57b0-46f8-dcdb-08d7a01ab3c4"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "UpdateEmployee",
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"name\": \"Martin Geil\",\n    \"age\": 32,\n    \"position\": \"Administrator\"\n}"
-				},
-				"url": {
-					"raw": "https://localhost:5001/api/companies/a69c728d-e9e0-47f0-9352-08d79f64971f/employees/bacdf3ea-9277-49c6-05b9-08d79f649736",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "5001",
-					"path": [
-						"api",
-						"companies",
-						"a69c728d-e9e0-47f0-9352-08d79f64971f",
-						"employees",
-						"bacdf3ea-9277-49c6-05b9-08d79f649736"
-					]
-				}
+				"body": {},
+				"description": ""
 			},
 			"response": []
 		},
 		{
 			"name": "UpdateCompany",
 			"request": {
+				"url": "https://localhost:5001/api/companies/acd37b65-1bbe-4c4f-d60d-08d7a34246ef",
 				"method": "PUT",
 				"header": [
 					{
 						"key": "Content-Type",
-						"name": "Content-Type",
 						"value": "application/json",
-						"type": "text"
+						"description": ""
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"name\":\"Lagrange Consultign Ltd\",\n\t\"address\":\"585 High Bluff Dr, Grafton WI\",\n\t\"country\":\"USA\",\n\t\"employees\": [\n\t\t{\n\t\t\t\"name\": \"Susan Lagrange\",\n\t\t\t\"age\": 25,\n\t\t\t\"position\": \"Lead\"\n\t\t}\n\t]\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
+					"raw": "{\n\t\"name\":\"Lagrange Consultign Ltd\",\n\t\"address\":\"585 High Bluff Dr, Grafton WI\",\n\t\"country\":\"USA\",\n}"
 				},
-				"url": {
-					"raw": "https://localhost:5001/api/companies/e646e583-e18a-478e-5ea8-08d7a1b2a87d",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "5001",
-					"path": [
-						"api",
-						"companies",
-						"e646e583-e18a-478e-5ea8-08d7a1b2a87d"
-					]
-				}
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateEmployee",
+			"request": {
+				"url": "https://localhost:5001/api/companies/60de9cef-aa9e-47c9-e17b-08d7a3489248/employees/3e8af788-f0b0-4f1c-d3de-08d7a348b3d3",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"David Lagrange\",\n\t\"age\":25,\n\t\"position\":\"Instructor/Designer\"\n}"
+				},
+				"description": ""
 			},
 			"response": []
 		},
 		{
 			"name": "PatchEmployee",
 			"request": {
+				"url": "https://localhost:5001/api/companies/60de9cef-aa9e-47c9-e17b-08d7a3489248/employees/3e8af788-f0b0-4f1c-d3de-08d7a348b3d3",
 				"method": "PATCH",
 				"header": [
 					{
 						"key": "Content-Type",
-						"name": "Content-Type",
 						"value": "application/json",
-						"type": "text"
+						"description": ""
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "[\n\t{\n\t\t\"op\": \"add\",\n\t\t\"path\": \"/age\",\n\t\t\"value\": \"63\"\n\t}\n]",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
+					"raw": "[\n\t{\n\t\t\"op\": \"replace\",\n\t\t\"path\": \"/age\",\n\t\t\"value\": \"25\"\n\t}\n]"
 				},
-				"url": {
-					"raw": "https://localhost:5001/api/companies/e646e583-e18a-478e-5ea8-08d7a1b2a87d/employees/c2a0252f-8bfb-4fb7-a3a6-08d7a1b2a881",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "5001",
-					"path": [
-						"api",
-						"companies",
-						"e646e583-e18a-478e-5ea8-08d7a1b2a87d",
-						"employees",
-						"c2a0252f-8bfb-4fb7-a3a6-08d7a1b2a881"
-					]
-				}
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "PatchCompany",
+			"request": {
+				"url": "https://localhost:5001/api/companies/3d490a70-94ce-4d15-9494-5248280c2ce3/",
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n\t{\n\t\t\"op\": \"replace\",\n\t\t\"path\": \"/country\",\n\t\t\"value\": \"CA\"\n\t}\n]"
+				},
+				"description": ""
 			},
 			"response": []
 		}
-	],
-	"protocolProfileBehavior": {}
+	]
 }

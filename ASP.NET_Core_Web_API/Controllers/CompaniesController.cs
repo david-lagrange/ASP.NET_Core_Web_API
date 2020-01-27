@@ -151,6 +151,13 @@ namespace ASP.NET_Core_Web_API.Controllers
                 return NotFound();
             }
             var companyToPatch = _mapper.Map<CompanyForUpdateDto>(companyEntity);
+            patchDoc.ApplyTo(companyToPatch, ModelState);
+            TryValidateModel(companyToPatch);
+            if (!ModelState.IsValid)
+            {
+                _logger.LogError("Invalid model state for the patch document.");
+                return UnprocessableEntity(ModelState);
+            }
             patchDoc.ApplyTo(companyToPatch);
             _mapper.Map(companyToPatch, companyEntity);
             _repository.Save();
