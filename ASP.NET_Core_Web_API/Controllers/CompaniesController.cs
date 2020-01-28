@@ -34,19 +34,12 @@ namespace ASP.NET_Core_Web_API.Controllers
             return Ok(companiesDto);
         }
         [HttpGet("{id}", Name = "CompanyById")]
-        public async Task<IActionResult> GetCompany(Guid id)
+        [ServiceFilter(typeof(ValidateCompanyExistsAttribute))]
+        public IActionResult GetCompany(Guid id)
         {
-            var company = await _repository.Company.GetCompanyAsync(id, trackChanges: false);
-            if(company == null)
-            {
-                _logger.LogInfo($"Company with id: {id} doesn't exist in the database.");
-                return NotFound();
-            }
-            else
-            {
-                var companyDto = _mapper.Map<CompanyDto>(company);
-                return Ok(companyDto);
-            }
+            var company = HttpContext.Items["company"] as Company;
+            var companyDto = _mapper.Map<CompanyDto>(company);
+            return Ok(companyDto);
         }
         [HttpPost]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
@@ -94,33 +87,26 @@ namespace ASP.NET_Core_Web_API.Controllers
             return CreatedAtRoute("CompanyCollection", new { ids }, companyCollectionToReturn);
         }
         [HttpDelete("{id}")]
+        [ServiceFilter(typeof(ValidateCompanyExistsAttribute))]
         public async Task<IActionResult> DeleteCompany(Guid id)
         {
-            var company = await _repository.Company.GetCompanyAsync(id, trackChanges: false);
-            if(company == null)
-            {
-                _logger.LogInfo($"Company with id: {id} doesn't exist in the database.");
-                return NotFound();
-            }
+            var company = HttpContext.Items["company"] as Company;
             _repository.Company.DeleteCompany(company);
             await _repository.SaveAsync();
             return NoContent();
         }
         [HttpPut("{id}")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
+        [ServiceFilter(typeof(ValidateCompanyExistsAttribute))]
         public async Task<IActionResult> UpdateCompany(Guid id, CompanyForUpdateDto company)
         {
-            var companyFromDb = await _repository.Company.GetCompanyAsync(id, true);
-            if(companyFromDb == null)
-            {
-                _logger.LogInfo($"Company with id: {id} doesn't exist in the database.");
-                return NotFound();
-            }
+            var companyFromDb = HttpContext.Items["company"] as Company;
             _mapper.Map(company, companyFromDb);
             await _repository.SaveAsync();
             return NoContent();
         }
         [HttpPatch("{id}")]
+        [ServiceFilter(typeof(ValidateCompanyExistsAttribute))]
         public async Task<IActionResult> PatchCompany(Guid id, [FromBody] JsonPatchDocument<CompanyForUpdateDto> patchDoc)
         {
             if(patchDoc == null)
@@ -128,12 +114,7 @@ namespace ASP.NET_Core_Web_API.Controllers
                 _logger.LogInfo("patchDoc object sent from client is null.");
                 return BadRequest("patchDoc object is null.");
             }
-            var companyEntity = await _repository.Company.GetCompanyAsync(id, true);
-            if(companyEntity == null)
-            {
-                _logger.LogInfo($"Company with id: {id} doesn't exist in the database.");
-                return NotFound();
-            }
+            var companyEntity = HttpContext.Items["company"] as Company;
             var companyToPatch = _mapper.Map<CompanyForUpdateDto>(companyEntity);
             patchDoc.ApplyTo(companyToPatch, ModelState);
             TryValidateModel(companyToPatch);
