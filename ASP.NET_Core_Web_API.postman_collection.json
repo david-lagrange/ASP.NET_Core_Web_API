@@ -27,7 +27,7 @@
 		{
 			"name": "GetCompany",
 			"request": {
-				"url": "https://localhost:5001/api/companies/c63792f1-75fa-46dd-5af0-08d79f59ed25",
+				"url": "https://localhost:5001/api/companies/C9D4C053-49B6-410C-BC78-2D54A9991870",
 				"method": "GET",
 				"header": [],
 				"body": {},
@@ -38,7 +38,35 @@
 		{
 			"name": "GetEmployeesFromCompany",
 			"request": {
-				"url": "https://localhost:5001/api/companies/a69c728d-e9e0-47f0-9352-08d79f64971f/employees",
+				"url": {
+					"raw": "https://localhost:5001/api/companies/C9D4C053-49B6-410C-BC78-2D54A9991870/employees?pageNumber=2&pageSize=2",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"companies",
+						"C9D4C053-49B6-410C-BC78-2D54A9991870",
+						"employees"
+					],
+					"query": [
+						{
+							"key": "pageNumber",
+							"value": "2",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "pageSize",
+							"value": "2",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
 				"method": "GET",
 				"header": [],
 				"body": {},
@@ -49,7 +77,7 @@
 		{
 			"name": "GetEmployeeFromCompany",
 			"request": {
-				"url": "https://localhost:5001/api/companies/c63792f1-75fa-46dd-5af0-08d79f59ed25/employees/3befbead-b9d6-4b06-5403-08d79f5f8574",
+				"url": "https://localhost:5001/api/companies/308c7fc0-d5f5-4880-98b2-08d7a3ff7db2/employees/6cea1c7d-7bf7-456f-3a79-08d7a4008027",
 				"method": "GET",
 				"header": [],
 				"body": {},
@@ -71,7 +99,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"name\":\"devCodeCamp\",\n\t\"address\":\"313 N Plankinton, Milwaukee WI\",\n\t\"country\":\"USA\"\n}"
+					"raw": "{\n\t\"name\":\"Code Maze\",\n\t\"address\":\"4344 Liskov Ave, Trinit\",\n\t\"country\":\"Serbia\"\n}"
 				},
 				"description": ""
 			},
@@ -80,7 +108,7 @@
 		{
 			"name": "CreateEmployeeForCompany",
 			"request": {
-				"url": "https://localhost:5001/api/companies/60de9cef-aa9e-47c9-e17b-08d7a3489248/employees",
+				"url": "https://localhost:5001/api/companies/C9D4C053-49B6-410C-BC78-2D54A9991870/employees",
 				"method": "POST",
 				"header": [
 					{
@@ -91,7 +119,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"name\":\"David Lagrange\",\n\t\"age\":25,\n\t\"position\":\"Instructor\"\n}"
+					"raw": "{\r\n\"name\": \"Kirk Metha\",\r\n\"age\": 30,\r\n\"position\": \"Marketing expert\"\r\n}"
 				},
 				"description": ""
 			},
@@ -159,7 +187,7 @@
 		{
 			"name": "UpdateCompany",
 			"request": {
-				"url": "https://localhost:5001/api/companies/acd37b65-1bbe-4c4f-d60d-08d7a34246ef",
+				"url": "https://localhost:5001/api/companies/308c7fc0-d5f5-4880-98b2-08d7a3ff7db2",
 				"method": "PUT",
 				"header": [
 					{
@@ -170,7 +198,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"name\":\"Lagrange Consultign Ltd\",\n\t\"address\":\"585 High Bluff Dr, Grafton WI\",\n\t\"country\":\"USA\",\n}"
+					"raw": "{\n\t\"name\":\"Code Maze\",\n\t\"address\":\"4333Liskov Ave, Trinit\",\n\t\"country\":\"Serbia\"\n}"
 				},
 				"description": ""
 			},
@@ -179,7 +207,7 @@
 		{
 			"name": "UpdateEmployee",
 			"request": {
-				"url": "https://localhost:5001/api/companies/60de9cef-aa9e-47c9-e17b-08d7a3489248/employees/3e8af788-f0b0-4f1c-d3de-08d7a348b3d3",
+				"url": "https://localhost:5001/api/companies/308c7fc0-d5f5-4880-98b2-08d7a3ff7db2/employees/6cea1c7d-7bf7-456f-3a79-08d7a4008027",
 				"method": "PUT",
 				"header": [
 					{
